@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>API page</title>
+</head>
+<body>
+    <h1>API page</h1>
+    <p class="developers">Developer content</p>
+    <div id="api-content"></div>
+    <img 
+    src="img/cat.jpg" 
+    alt="logo"
+    width="200"
+    class="animal-photo" />
+    <p><a href="index.html">Back to home page</a></p>   
+    <script>
+        var timerStart = new Date().getTime();
+        var Http = new XMLHttpRequest();
+        var url='http://api.icndb.com/jokes/random';
+        Http.open("GET", url);
+        Http.send();
+        
+        Http.onerror = function() {
+            document.getElementById('api-content').innerHTML = 
+                "An error occurred while fetching the api content";
+        }
+
+        Http.onreadystatechange = (e) => {
+        console.log(Http.responseText)
+        var response = JSON.parse(Http.responseText);
+        var joke = response.value.joke;
+        var timerEnd = new Date().getTime();
+        var responseTime = (timerStart - timerEnd) + 'ms later';
+        document.getElementById('api-content').innerHTML = 
+            joke + " returned in " + responseTime;
+        }
+    </script>
+</body>
+</html>
