@@ -5,34 +5,36 @@
 <body>
     <h1>API page</h1>
     <p class="developers">Developer content</p>
+    <button onclick="loadAPIContent()">Load API content</button>
     <div id="api-content"></div>
     <img 
-    src="img/cat.jpg" 
-    alt="logo"
-    width="200"
-    class="animal-photo" />
+        src="img/cat.jpg" 
+        alt="logo"
+        width="200"
+        class="animal-photo" />
     <p><a href="index.html">Back to home page</a></p>   
     <script>
-        var timerStart = new Date().getTime();
-        var Http = new XMLHttpRequest();
-        var url='https://api.icndb.com/jokes/random';
-        Http.open("GET", url);
-        Http.send();
-        
-        Http.onerror = function() {
-            document.getElementById('api-content').innerHTML = 
-                "An error occurred while fetching the api content";
-        }
+        function loadAPIContent() {
+            var timerStart = new Date().getTime();
+            var Http = new XMLHttpRequest();
+            var url='https://api.icndb.com/jokes/random';
+            Http.open("GET", url);
+            Http.send();
+            
+            Http.onerror = function() {
+                document.getElementById('api-content').innerHTML = 
+                    "An error occurred while fetching the api content";
+            }
 
-        Http.onreadystatechange = (e) => {
-        console.log(Http.responseText)
-        var response = JSON.parse(Http.responseText);
-        var joke = response.value.joke;
-        var timerEnd = new Date().getTime();
-        var responseTime = (timerStart - timerEnd) + 'ms later';
-        document.getElementById('api-content').innerHTML = 
-            joke + " returned in " + responseTime;
-        }
+            Http.onreadystatechange = (e) => {
+            var response = JSON.parse(Http.responseText);
+            var joke = response.value.joke;
+            var timerEnd = new Date().getTime();
+            var responseTime = (timerStart - timerEnd) + 'ms later';
+            document.getElementById('api-content').innerHTML = 
+                joke + " returned in " + responseTime;
+            }
+        }        
     </script>
 </body>
 </html>
