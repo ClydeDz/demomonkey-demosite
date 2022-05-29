@@ -1,5 +1,5 @@
-# Note: You can use a hash # symbol to add comments
-###################################################
+# Note: You can use a hash # symbol or semi colon ; to add comments
+###################################################################
 
 [Options]
 @include[] = /^https?://clydedz.github.io/demomonkey-demosite.*$/
@@ -11,19 +11,19 @@ demo@example.com=noreply@example.com
 Welcome to animal photos=Welcome to animal site
 
 $html=<p>Most <b><u>welcome</u></b></p>
-!overwriteHTML('index.html', '.welcome') = $html
+!overwriteHTML(index.html, .welcome) = $html
 
 !replaceImage(https://clydedz.github.io/demomonkey-demosite/img/cat.jpg) = https://clydedz.github.io/demomonkey-demosite/img/dog.jpg
 
 !recolorImage(https://clydedz.github.io/demomonkey-demosite/img/cat.jpg) = rgb(255,0,0)
 
-!replace(Developer content, /api.html, .developers) = Monkey content
+!replace(Developer content, api.html, .developers) = Monkey content
 
 !style(Privacy page, color) = red 
 
-!hide(Logout, 0, logout-button, /index.html)
+!hide(Logout, 0, logout-button, index.html)
 
-!overwritePage('index.html', '') = api.html
+!overwritePage(index.html, '') = api.html
 
 !replaceAttribute(index.html, href) = api.html
 
@@ -31,6 +31,6 @@ $html=<p>Most <b><u>welcome</u></b></p>
 
 !delayUrl(https://api.icndb.com/jokes/random) = 10
 
-!blockUrl(https://api.icndb.com/jokes/random, xmlhttprequest)
+!blockUrl(https://api.icndb.com/jokes/random)
 
 !redirectUrl(https://clydedz.github.io/demomonkey-demosite/privacy.html) = https://www.bing.com
